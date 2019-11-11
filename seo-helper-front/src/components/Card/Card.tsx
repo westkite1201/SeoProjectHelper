@@ -2,14 +2,17 @@ import React, { ChangeEvent, MouseEvent, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import { PAGE_PATHS, STORES } from '../../constants';
 import CardStore from '../../stores/card/CardStore';
+import AuthStore from '../../stores/auth/AuthStore';
 import { RouteComponentProps } from 'react-router';
 
 interface InjectedProps {
-  [STORES.CARD_STORE]: CardStore;
+ // [STORES.CARD_STORE]: CardStore;
+  [STORES.AUTH_STORE]: AuthStore;
+
 }
 
 function Card(props: InjectedProps & RouteComponentProps) {
-  const { cardStore, history } = props;
+  const { authStore } = props;
 
   useEffect(() => {
     //authStore.resetPasswordAndEmail();
@@ -27,10 +30,10 @@ function Card(props: InjectedProps & RouteComponentProps) {
 //   };
 
   const changeEmail = (v: ChangeEvent<HTMLInputElement>) => {
-    const { getConfig } = props[STORES.CARD_STORE];
-    getConfig(v.target.value);
+    const { setEmail } = props[STORES.AUTH_STORE];
+    setEmail(v.target.value);
   };
-  const { str } = props[STORES.CARD_STORE];
+
   return (
       <div className="container container-sm container-sign">
         <form className="form-sign">
@@ -39,7 +42,7 @@ function Card(props: InjectedProps & RouteComponentProps) {
             <input
               type="text"
               className="form-control"
-              value={cardStore.str}
+              value={authStore.email}
               onChange={changeEmail}
               placeholder="이메일 입력"
             />
@@ -47,7 +50,7 @@ function Card(props: InjectedProps & RouteComponentProps) {
 
         </form>
         <div>
-            {str}
+            {/*str*/}
         </div>
 
     </div>
