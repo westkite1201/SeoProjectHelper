@@ -1,4 +1,5 @@
 import AuthStore from './auth/AuthStore';
+import CardStore from './card/CardStore';
 import ProductsStore from '../stores/product/ProductStore';
 import ProductService from '../services/ProductService';
 

@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import StoreProvider from './providers/StoreProvider';
-import 'moment/locale/ko';
+import 'moment';
 
 ReactDOM.render(
   <StoreProvider>

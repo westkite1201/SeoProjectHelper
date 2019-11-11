@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { ApiResponse } from '~services/types';
-import AuthStore from '~stores/auth/AuthStore';
+import { ApiResponse } from '../services/types';
+import AuthStore from '../stores/auth/AuthStore';
 
-export type ProductRegistrationDto = {
+export type CardRegistrationDto = {
   userId?: string;
   image: File;
   category: number;
@@ -11,26 +11,23 @@ export type ProductRegistrationDto = {
   price: number;
 }
 
-export type ProductDto = {
-  id: number;
-  userId: string;
+export type CardString = {
+    name: string;
+  }
+
+export type CardDto = {
   title: string;
-  image: string;
-  category: number;
   description: string;
-  price: number;
-  createdAt: string;
-  updatedAt: string;
 }
 
 const API_HOST = process.env.API_HOST || 'http://localhost:5000/api';
 
-class ProductService {
+class CardService {
 
   constructor(private authStore: AuthStore) {
   }
 
-  async registration(body: ProductRegistrationDto): Promise<ApiResponse<ProductDto>> {
+  async registration(body: CardRegistrationDto): Promise<ApiResponse<CardDto>> {
     if (this.authStore.auth == null) {
       throw new Error('need to login!');
     }
@@ -42,19 +39,19 @@ class ProductService {
     formData.append('description', body.description);
     formData.append('price', String(body.price));
 
-    return axios.post<ProductRegistrationDto, ApiResponse<ProductDto>>(`${API_HOST}/products`, formData, {
+    return axios.post<CardRegistrationDto, ApiResponse<CardDto>>(`${API_HOST}/products`, formData, {
       headers: {'Content-Type': 'multipart/form-data' }
     });
   }
 
-  async getAll(): Promise<ApiResponse<ProductDto[]>> {
+  async getAll(): Promise<ApiResponse<CardDto[]>> {
     return axios.get(`${API_HOST}/products`);
   }
 
-  async getById(id: string): Promise<ApiResponse<ProductDto>> {
+  async getById(id: string): Promise<ApiResponse<CardDto>> {
     return axios.get(`${API_HOST}/products/${id}`);
   }
 
 }
 
-export default ProductService;
+export default CardService;

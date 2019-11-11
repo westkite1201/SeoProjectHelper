@@ -1,9 +1,11 @@
 export enum STORES {
   AUTH_STORE = 'authStore',
   PRODUCTS_STORE = 'productsStore',
+  CARD_STORE = 'cardStore'
 }
 
 export enum PAGE_PATHS {
+  MAIN = '/',
   SIGNUP = '/signup',
   SIGNIN = '/signin',
   PRODUCT_LISTS = '/products',

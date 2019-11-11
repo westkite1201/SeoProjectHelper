@@ -11,7 +11,7 @@ import { inject, observer } from 'mobx-react';
 //import autobind from 'autobind-decorator';
 import dashboardRoutes from './routes/dashboard'
 import { PAGE_PATHS, STORES } from './constants';
-
+import Card from './components/Card/Card'
 @inject(STORES.AUTH_STORE)
 @observer
 //@autobind
@@ -25,6 +25,7 @@ export default class App extends Component {
         if(prop.exact){
           return  <Route exact path={prop.path} component={prop.component} key={key}  />;
         }
+
         /*path로 설정했지만 다른 것으로 전환하는게 좋을듯  */
         if(prop.path){
           return <Route path={prop.path} component={prop.component} key={key} />;
@@ -35,6 +36,8 @@ export default class App extends Component {
                     redirectTo={PAGE_PATHS.SIGNIN}
                     component={prop.component}
                   />
+        }else{
+          return  <Route exact path={prop.path} component={prop.component} key={key}  />;
         }
       })}
     </Switch>
@@ -43,7 +46,10 @@ export default class App extends Component {
   render() {
     return (
       <Router>
-        {this.switchRoutes}
+          <Switch>
+          <Route path={PAGE_PATHS.MAIN} component={Card} />
+        </Switch>
+        {/*this.switchRoutes*/}
         {/*
         <Switch>
           <Route path={PAGE_PATHS.SIGNIN} component={Login} />

@@ -21,6 +21,7 @@ class AuthStore {
       this.auth = jwtDecode(this.token) as Auth;
     }
 
+    
     reaction(
       () => this.token,
       token => {
@@ -29,12 +30,13 @@ class AuthStore {
     );
   }
 
+
   isLoggedIn = () =>{
     return this.token != null;
   }
 
   @action
-  async login = () => {
+  login = async() => {
     const body: LoginSignupRequestDto = {
       email: this.email,
       password: this.password

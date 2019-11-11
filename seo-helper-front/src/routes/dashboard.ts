@@ -1,6 +1,6 @@
 // @material-ui/icons
-import Dashboard from "@material-ui/icons/Dashboard";
-import App from '../App'
+import Dashboard from "@material-ui/icons/Dashboard"
+
 
 const dashboardRoutes = [
   {
@@ -10,7 +10,7 @@ const dashboardRoutes = [
     sidebarName: "App",
     navbarName: "App",
     icon: Dashboard,
-    component: App
+
   },
   //{ redirect: true, path: "/", to: "/dashboard", navbarName: "Redirect" }
 ];
