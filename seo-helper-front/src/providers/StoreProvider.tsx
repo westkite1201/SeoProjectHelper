@@ -6,6 +6,7 @@ interface IStoreProviderProps {}
 
 const rootStore = new RootStore();
 
+/* children = App 이 들어감  */
 const StoreProvider: React.FunctionComponent<IStoreProviderProps> = ({children}) => 
     <Provider {...rootStore}>
         {children}

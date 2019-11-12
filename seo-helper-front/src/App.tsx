@@ -11,7 +11,7 @@ import { inject, observer } from 'mobx-react';
 //import autobind from 'autobind-decorator';
 import dashboardRoutes from './routes/dashboard'
 import { PAGE_PATHS, STORES } from './constants';
-import Card from './components/Card/Card'
+import Cards from './components/Cards/Cards'
 @inject(STORES.AUTH_STORE)
 @observer
 //@autobind
@@ -47,7 +47,7 @@ export default class App extends Component {
     return (
       <Router>
           <Switch>
-          <Route path={PAGE_PATHS.MAIN} component={Card} />
+          <Route path={PAGE_PATHS.MAIN} component={Cards} />
         </Switch>
         {/*this.switchRoutes*/}
         {/*
