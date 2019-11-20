@@ -60,11 +60,28 @@ function Cards(props: InjectedProps & RouteComponentProps) {
     const { getConfig } = cardStore;
     getConfig(v.target.value);
   };
+  let list= cardStore.comments.map((item : any) => { 
+    return(
+      <Card className={classes.card}>
+      <CardContent>
+        <Typography className={classes.title} color="textSecondary" gutterBottom>
+          <a href ={`${item.MAIN_URL}/${item.CAFE_NAME}/${item.HREF_NUM}`} >
+            {`${item.MAIN_URL}/${item.CAFE_NAME}/${item.HREF_NUM}`}
+          </a>
+        </Typography>
+        <Typography variant="h5" component="h2">
+          {item.COMMENT_STR}
+        </Typography>
+      </CardContent>
+    </Card>
+    )
+
+  })
 
   return (
       <div className="container container-sm container-sign">
         <form className="form-sign">
-          <h5 className="form-headline">🥕 로그인 🐰</h5>
+          <h5 className="form-headline">🥕 네이버 ㄷㅅㅂㄱ 🐰</h5>
           <div className="form-group">
             <input
               type="text"
@@ -77,32 +94,8 @@ function Cards(props: InjectedProps & RouteComponentProps) {
 
         </form>
         <div>
-        <Card className={classes.card}>
-          <CardContent>
-            <Typography className={classes.title} color="textSecondary" gutterBottom>
-              Word of the Day
-            </Typography>
-            <Typography variant="h5" component="h2">
-              be
-              {bull}
-              nev
-              {bull}o{bull}
-              lent
-            </Typography>
-            <Typography className={classes.pos} color="textSecondary">
-              adjective
-            </Typography>
-            <Typography variant="body2" component="p">
-              well meaning and kindly.
-              {cardStore.str}
-              <br />
-              {'"a benevolent smile"'}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button size="small">Learn More</Button>
-          </CardActions>
-        </Card>
+          <Button size="small" onClick = {cardStore.getBookmarkComments} >Learn More</Button>
+        {list}
         </div>
 
     </div>
